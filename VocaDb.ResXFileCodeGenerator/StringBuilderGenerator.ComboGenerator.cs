@@ -205,7 +205,7 @@ namespace VocaDb.ResXFileCodeGenerator
 
 		internal static int GetNumberOfParams(string value)
 		{
-			var matchs = Regex.Matches(value, @"\{(\d+)\}");
+			var matchs = Regex.Matches(value, @"\{(.*?)\}");
 			HashSet<string> validArgs = new HashSet<string>();
 			foreach (Match item in matchs)
 			{
