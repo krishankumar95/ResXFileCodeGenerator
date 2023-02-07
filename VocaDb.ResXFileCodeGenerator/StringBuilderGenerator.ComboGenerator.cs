@@ -206,12 +206,10 @@ namespace VocaDb.ResXFileCodeGenerator
 		internal static int GetNumberOfParams(string value)
 		{
 			var matchs = Regex.Matches(value, @"\{(\d+)\}");
-			HashSet<int> validArgs = new HashSet<int>();
+			HashSet<string> validArgs = new HashSet<string>();
 			foreach (Match item in matchs)
 			{
-				var intStr = item.Value.Clip(1, item.Value.Length - 1);
-				var validInt = Int32.Parse(intStr);
-				validArgs.Add(validInt);
+				validArgs.Add(item.Value);
 			}
 			return matchs.Count;
 		}
