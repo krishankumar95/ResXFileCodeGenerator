@@ -211,7 +211,7 @@ namespace VocaDb.ResXFileCodeGenerator
 			{
 				validArgs.Add(item.Value);
 			}
-			return matchs.Count;
+			return validArgs.Count;
 		}
 	
 	}
