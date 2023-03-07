@@ -19,6 +19,7 @@ public readonly record struct FileOptions
 	public bool UseVocaDbResManager { get; init; }
 	public string EmbeddedFilename { get; init; }
 	public bool IsValid { get; init; }
+	public bool DisableMethodGeneration { get; init; }
 	
 	public FileOptions(
 		GroupedAdditionalFile groupedFile,
@@ -68,6 +69,12 @@ public readonly record struct FileOptions
 				: classNameFromFileName + globalOptions.ClassNamePostfix;
 
 		NullForgivingOperators = globalOptions.NullForgivingOperators;
+
+		DisableMethodGeneration =
+			options.TryGetValue("build_metadata.EmbeddedResource.DisableMethodGeneration", out var perFileDisableMethodGenerationSwitch) &&
+			perFileDisableMethodGenerationSwitch is { Length: > 0 }
+				? perFileDisableMethodGenerationSwitch.Equals("true", StringComparison.OrdinalIgnoreCase)
+				: false;
 
 		PublicClass =
 			options.TryGetValue("build_metadata.EmbeddedResource.PublicClass", out var perFilePublicClassSwitch) &&

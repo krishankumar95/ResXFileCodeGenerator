@@ -64,7 +64,7 @@ public sealed partial class StringBuilderGenerator : IGenerator
 
 		var numParams = GetNumberOfParams(value);
 
-		if (numParams == 0)
+		if (numParams == 0 || options.DisableMethodGeneration)
 		{
 			if (resourceAccessByName)
 			{

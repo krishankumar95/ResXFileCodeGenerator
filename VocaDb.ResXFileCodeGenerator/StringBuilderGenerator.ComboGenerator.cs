@@ -166,7 +166,7 @@ namespace VocaDb.ResXFileCodeGenerator
 
 				var numParams = GetNumberOfParams(value);
 
-				if (numParams == 0)
+				if (numParams == 0 || options.DisableMethodGeneration)
 				{
 					builder.Append(" => GetString_");
 					builder.Append(FunctionNamePostFix(definedLanguages));

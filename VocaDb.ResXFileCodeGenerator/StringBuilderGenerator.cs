@@ -239,7 +239,7 @@ public sealed partial class StringBuilderGenerator : IGenerator
 
 		var numParams = GetNumberOfParams(neutralValue);
 
-		if (numParams == 0)
+		if (numParams == 0 || options.DisableMethodGeneration)
 		{
 			builder.Append(indent);
 			builder.Append("public ");
